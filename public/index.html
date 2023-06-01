@@ -5,14 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+   <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
     <header>
         <h1>Note Taker</h1>
-        <button>+</button>
+        <button id="nav">+</button>
     </header>
-    <div class="aside"><div><p></p> <button></button></div></div>
-    <div class="textbox"><input type="text" placeholder="Note Title">
-    <input type="text" placeholder="Note text"></div>
+    <form id="notes"> <div class="textbox"><input type="text" id="title" placeholder="Note Title">
+        <input type="text" id="noteText" placeholder="Note text"></div>
+    </form>
+   
+    <section id="notes"></section>
 </body>
 </html>
