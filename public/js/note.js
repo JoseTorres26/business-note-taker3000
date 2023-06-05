@@ -1,38 +1,37 @@
-const btn = document.getElementById('nav')
-const notes = document.getElementById('notes')
+const btn = document.getElementById('nav');
+const notes = document.getElementById('notes');
 
 btn.addEventListener('click', (e) => {
-    e.preventDefault();
-    window.location.href = '/';
+  e.preventDefault();
+  window.location.href = '/';
 });
 
 if (notes) {
-    notes,addEventListener('submit', (e) => {
+  notes.addEventListener('submit', (e) => {
     e.preventDefault();
-    let title = document.getElementById('title');
-    let text = document.getElementById('noteText');
+    let title = document.getElementById('title').value;
+    let text = document.getElementById('noteText').value;
 
     const newNote = {
-        title,
-        text,
+      title,
+      note: text,
     };
 
-    fetch('api/notes', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(newNote),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          alert(data.status);
-          text = '';
-          title = '';
-        });
+    fetch('/notes', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newNote),
     })
-    .catch((error) => {
-      console.error('Error:', error);
-    }
-    )
+      .then((res) => res.json())
+      .then((data) => {
+        alert(data.status);
+        text = '';
+        title = '';
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  });
 }

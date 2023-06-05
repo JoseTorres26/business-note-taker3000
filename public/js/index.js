@@ -16,24 +16,6 @@ btn.addEventListener('click', (e) => {
   postNote(newNote);
 });
 
-
-const createCard = (note) => {
-    const cardEl = document.createElement('div');
-    cardEl.setAttribute('key', note.note_id);
-  
-    const cardHeaderEl = document.createElement('h4');
-    cardHeaderEl.innerHTML = `${note.title} </br>`;
-  
-    const cardBodyEl = document.createElement('div');
-    cardBodyEl.classList.add('card-body', 'bg-light', 'p-2');
-    cardBodyEl.innerHTML = `<p>${note.note}</p>`;
-  
-    cardEl.appendChild(cardHeaderEl);
-    cardEl.appendChild(cardBodyEl);
-  
-    notes.appendChild(cardEl);
-  };
-  
 const getNotes = () =>
   fetch('/api/notes', {
     method: 'GET',
@@ -47,22 +29,39 @@ const getNotes = () =>
       console.error('Error:', error);
     });
 
-const postNote = (note) =>
-  fetch('/api/notes', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(note),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      alert(data);
-      createCard(data);
+    const postNote = (note) =>
+    fetch('/api/notes', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(note),
     })
-    .catch((error) => {
-      console.error('Error:', error);
-    });
+      .then((response) => response.json())
+      .then((data) => {
+        alert(data);
+        createCard(data);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  
+  const createCard = (note) => {
+    const cardEl = document.createElement('div');
+    cardEl.setAttribute('key', note.note_id);
+  
+    const cardHeaderEl = document.createElement('h4');
+    cardHeaderEl.innerHTML = `${note.title} </br>`;
+  
+    const cardBodyEl = document.createElement('div');
+    cardBodyEl.classList.add('card-body', 'bg-light', 'p-2');
+    cardBodyEl.innerHTML = `<p>${note.note}</p>`;
+  
+    cardEl.appendChild(cardHeaderEl);
+    cardEl.appendChild(cardBodyEl);
+  
+    notes.insertBefore(cardEl, notes.firstChild);
+  };
 
     getNotes().then((data) => data.forEach((note) => createCard(note)));
 
@@ -74,7 +73,7 @@ const postNote = (note) =>
             title: '',
           };
 
-  const noteCheck = note.length = 0;
+  const noteCheck = note.length === 0;
   if (!noteCheck) {
     errorState.note = 'Notes have stuff in it you know...';
   }
