@@ -1,10 +1,21 @@
 const notes = document.getElementById('notes')
 const btn = document.getElementById('nav')
+const titleInput = document.getElementById('title');
+const noteTextInput = document.getElementById('noteText');
 
 btn.addEventListener('click', (e) => {
   e.preventDefault();
-  window.location.href = '/';
+  const title = titleInput.value;
+  const noteText = noteTextInput.value;
+
+  const newNote = {
+    title: title,
+    note: noteText,
+  };
+
+  postNote(newNote);
 });
+
 
 const createCard = (note) => {
     const cardEl = document.createElement('div');
@@ -20,7 +31,7 @@ const createCard = (note) => {
     cardEl.appendChild(cardHeaderEl);
     cardEl.appendChild(cardBodyEl);
   
-    tipsContainer.appendChild(cardEl);
+    notes.appendChild(cardEl);
   };
   
 const getNotes = () =>
@@ -47,7 +58,7 @@ const postNote = (note) =>
     .then((response) => response.json())
     .then((data) => {
       alert(data);
-      createCard(note);
+      createCard(data);
     })
     .catch((error) => {
       console.error('Error:', error);
@@ -55,7 +66,7 @@ const postNote = (note) =>
 
     getNotes().then((data) => data.forEach((note) => createCard(note)));
 
-    const validateTip = (newNote) => {
+    const validate = (newNote) => {
         const { title, note } = newNote;
 
         const errorState = {

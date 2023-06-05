@@ -4,18 +4,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-   <link rel="stylesheet" href="./css/styles.css">
+    <title>Note Taker</title>
+    <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
     <header>
         <h1>Note Taker</h1>
         <button id="nav">+</button>
     </header>
-    <form id="notes"> <div class="textbox"><input type="text" id="title" placeholder="Note Title">
-        <input type="text" id="noteText" placeholder="Note text"></div>
+    <form id="note-form">
+        <div class="textbox">
+            <input type="text" id="title" placeholder="Note Title">
+            <input type="text" id="noteText" placeholder="Note text">
+        </div>
     </form>
    
-    <section id="notes"></section>
+    <section id="note-container"></section>
 </body>
 </html>

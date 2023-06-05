@@ -9,19 +9,22 @@ const app = express();
 // Middleware for parsing JSON and urlencoded form data
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use('/api', api);
 
+// Serve static files from the "public" directory
 app.use(express.static('public'));
 
+// API routes
+app.use('/notes', api);
+
 // GET Route for homepage
-app.get('/', (req, res) =>
-  res.sendFile(path.join(__dirname, './assets/public/index.html'))
-);
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public/index.html'));
+});
 
 // Wildcard route to direct users to a 404 page
-app.get('*', (req, res) =>
-  res.sendFile(path.join(__dirname, 'public/pages/404.html'))
-);
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public/pages/404.html'));
+});
 
 app.listen(PORT, () =>
   console.log(`App listening at http://localhost:${PORT} 🚀`)
