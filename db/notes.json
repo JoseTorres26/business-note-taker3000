@@ -1,12 +1,7 @@
 [
     {
-        "title": "UX",
-        "note": "Don't use comic sans",
-        "note_id": "3fe5d166-2f9e-4e3d-87a7-25a561207c6c"
-    },
-    {
-        "note": "does this update the text?",
-        "title": "TEST",
-        "note_id": "aacdc29c-ecf6-4046-a555-584cdce3c8ac"
+        "note": "this takes notes",
+        "title": "note taker",
+        "note_id": "e024f429-8d82-4d9a-bb6c-b7c2135d07b7"
     }
 ]
